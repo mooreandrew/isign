@@ -30,6 +30,9 @@ def openssl_command(args, data=None, expect_err=False):
         return results of openssl command.
         Some commands always write something to stderr, so allow
         for that with the expect_err param. """
+
+    log.debug("Command `{0}`".format(cmd_str))
+
     cmd = [OPENSSL] + args
     cmd_str = ' '.join(cmd)
     # log.debug('running command ' + cmd_str)
@@ -41,7 +44,6 @@ def openssl_command(args, data=None, expect_err=False):
         proc.stdin.write(data)
     out, err = proc.communicate()
 
-    log.debug("Command `{0}`".format(cmd_str))
     if not expect_err:
         if err is not None and err != '':
             log.error("Command `{0}` returned error:\n{1}".format(cmd_str, err))
@@ -59,6 +61,9 @@ def openssl_command(args, data=None, expect_err=False):
 def get_installed_openssl_version():
     version_line = openssl_command(['version'])
     # e.g. 'OpenSSL 0.9.8zd 8 Jan 2015'
+    log.debug("openssl `{0}`".format(version_line))
+
+
     return re.split(r'\s+', version_line)[1]
 
 
