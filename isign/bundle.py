@@ -97,12 +97,12 @@ class Bundle(object):
                 self.info[key] = val
                 changed = True
 
-        if changed:
-            log.debug('(2) writing {0}'.format(self.info_path))
+        # if changed:
+        log.debug('(2) writing {0}'.format(self.info_path))
 
-            biplist.writePlist(self.info, self.info_path, binary=False)
-        else:
-            self.orig_info = None
+        biplist.writePlist(self.info, self.info_path, binary=False)
+        # else:
+        #     self.orig_info = None
 
     def info_props_changed(self):
         return self.orig_info is not None
