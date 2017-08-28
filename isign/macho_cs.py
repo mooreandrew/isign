@@ -12,7 +12,7 @@ import plistlib
 
 class PlistAdapter(Adapter):
     def _encode(self, obj, context):
-        return plistlib.writePlistToString(obj)
+        return plistlib.writePlistToString(obj, False)
 
     def _decode(self, obj, context):
         return plistlib.readPlistFromString(obj)
