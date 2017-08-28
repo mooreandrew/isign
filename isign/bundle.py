@@ -98,6 +98,8 @@ class Bundle(object):
                 changed = True
 
         if changed:
+            log.debug('(2) writing {0}'.format(self.info_path))
+
             biplist.writePlist(self.info, self.info_path, binary=False)
         else:
             self.orig_info = None
@@ -228,6 +230,8 @@ class App(Bundle):
     def write_entitlements(self, entitlements):
         """ Write entitlements to self.entitlements_path. This actually doesn't matter
             to the app, it's just used later on by other parts of the signing process. """
+
+        log.debug('(3) writing {0}'.format(self.entitlements_path))
 
         biplist.writePlist(entitlements, self.entitlements_path, binary=False)
         log.debug("wrote Entitlements to {0}".format(self.entitlements_path))

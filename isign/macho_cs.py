@@ -12,6 +12,8 @@ import plistlib
 
 class PlistAdapter(Adapter):
     def _encode(self, obj, context):
+        log.debug('(4) writing {0}'.format(obj))
+
         return plistlib.writePlistToString(obj, False)
 
     def _decode(self, obj, context):
