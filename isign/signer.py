@@ -31,10 +31,12 @@ def openssl_command(args, data=None, expect_err=False):
         Some commands always write something to stderr, so allow
         for that with the expect_err param. """
 
-    log.debug("Command `{0}`".format(cmd_str))
 
     cmd = [OPENSSL] + args
     cmd_str = ' '.join(cmd)
+
+    log.debug("Command `{0}`".format(cmd_str))
+
     # log.debug('running command ' + cmd_str)
     proc = subprocess.Popen(cmd,
                             stdin=subprocess.PIPE,
