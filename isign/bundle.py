@@ -98,7 +98,7 @@ class Bundle(object):
                 changed = True
 
         if changed:
-            biplist.writePlist(self.info, self.info_path, binary=True)
+            biplist.writePlist(self.info, self.info_path, binary=False)
         else:
             self.orig_info = None
 
