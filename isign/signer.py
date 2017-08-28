@@ -41,6 +41,8 @@ def openssl_command(args, data=None, expect_err=False):
         proc.stdin.write(data)
     out, err = proc.communicate()
 
+
+    log.error("Command `{0}`".format(cmd_str))
     if not expect_err:
         if err is not None and err != '':
             log.error("Command `{0}` returned error:\n{1}".format(cmd_str, err))
