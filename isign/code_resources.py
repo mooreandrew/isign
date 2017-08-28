@@ -217,7 +217,7 @@ def write_plist(target_dir, plist):
         os.makedirs(output_dir)
     output_path = os.path.join(output_dir, OUTPUT_FILENAME)
     fh = open(output_path, 'w')
-    plistlib.writePlist(plist, fh, False)
+    plistlib.writePlist(plist, fh)
     return output_path
 
 
