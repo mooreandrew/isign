@@ -11,7 +11,7 @@ working_dir=$PWD
 name=$(basename $PWD)
 popd >/dev/null
 package=$(echo $name | sed 's/-/_/g')
-version_json="${working_dir}/${package}/version.json"
+version_json="${working_dir}/isign/version.json"
 
 version_suffix=""
 # official version
