@@ -40,7 +40,7 @@ class Signable(object):
         self.f.seek(0)
 
         self.m = macho.MachoFile.parse_stream(self.f)
-        self.sign_from_scratch = True
+        self.sign_from_scratch = False
         log.debug("sign_from_scratch {0}".format(self.sign_from_scratch))
 
         # may set sign_from_scratch to True
