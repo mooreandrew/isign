@@ -390,9 +390,9 @@ def resign(input_path,
         if archive is None:
             raise NotSignable('No matching archive type found')
         ua = archive.unarchive_to_temp()
-        #if info_props:
+        if info_props:
             # Override info.plist props of the parent bundle
-        ua.bundle.update_info_props(info_props)
+            ua.bundle.update_info_props(info_props)
         ua.bundle.resign(signer, provisioning_profile, alternate_entitlements_path)
         bundle_info = ua.bundle.info
         ua.archive(output_path)
