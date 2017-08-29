@@ -109,6 +109,7 @@ class Signable(object):
             log.debug("fake codesig length: {}".format(fake_codesig_length))
 
             # stage 2: real signature
+            log.debug(self.bundle.get_info_prop('CFBundleIdentifier'))
             codesig_data = make_signature(macho, arch_offset, arch_size, arch['cmds'], self.f, entitlements_file,
                                           fake_codesig_length, self.signer,
                                           self.bundle.get_info_prop('CFBundleIdentifier'))
