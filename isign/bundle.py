@@ -83,6 +83,9 @@ class Bundle(object):
                 # id if it's not being set explicitly
                 old_bundle_id = self.info['CFBundleIdentifier']
                 new_bundle_id = new_props['CFBundleIdentifier']
+
+                log.debug('new_bundle_id {0}'.format(new_bundle_id))
+
                 for url_type in self.info['CFBundleURLTypes']:
                     if 'CFBundleURLName' not in url_type:
                         continue
@@ -98,12 +101,14 @@ class Bundle(object):
                     self.info[key] = val
                     changed = True
 
+
+
         # if changed:
         log.debug('(2) writing {0}'.format(self.info_path))
 
         biplist.writePlist(self.info, self.info_path, binary=True)
         # else:
-        #     self.orig_info = None
+        self.orig_info = None
 
     def info_props_changed(self):
         return self.orig_info is not None
