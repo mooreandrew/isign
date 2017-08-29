@@ -70,8 +70,8 @@ class Bundle(object):
         return executable
 
     def update_info_props(self, new_props):
-        if self.orig_info is None:
-            self.orig_info = copy.deepcopy(self.info)
+        #if self.orig_info is None:
+        self.orig_info = copy.deepcopy(self.info)
 
         changed = False
         if ('CFBundleIdentifier' in new_props and

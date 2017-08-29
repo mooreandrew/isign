@@ -393,6 +393,7 @@ def resign(input_path,
 
 
 
+        ua.bundle.save_xml(info_props)
 
 
 
@@ -400,7 +401,6 @@ def resign(input_path,
         if info_props:
             # Override info.plist props of the parent bundle
             ua.bundle.update_info_props(info_props)
-        ua.bundle.save_xml(info_props)
         ua.bundle.resign(signer, provisioning_profile, alternate_entitlements_path)
         bundle_info = ua.bundle.info
 
