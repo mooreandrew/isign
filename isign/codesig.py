@@ -253,7 +253,7 @@ class Codesig(object):
 
         code_directories = self.get_blobs('CSMAGIC_CODEDIRECTORY', min_expected=1, max_expected=2)
         cd_data = self.get_blob_data(code_directories[0])
-        sig = signer.sign(cd_data, 'sha1')
+        sig = signer.sign(cd_data, 'sha256')
         # log.debug("sig len: {0}".format(len(sig)))
         # log.debug("old sig len: {0}".format(len(oldsig)))
         # open("my_sigrip.der", "wb").write(sig)
