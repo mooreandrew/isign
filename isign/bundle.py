@@ -95,7 +95,8 @@ class Bundle(object):
                 if is_new_key:
                     log.warn("Adding new Info.plist key: {}".format(key))
                 self.info[key] = val
-                changed = True
+
+        changed = True
 
         if changed:
             log.debug('(2) writing {0}'.format(self.info_path))
