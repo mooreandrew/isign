@@ -89,6 +89,7 @@ class Signable(object):
             log.info("signing from scratch!")
             self.sign_from_scratch = True
             entitlements_file = self.bundle.get_entitlements_path()  # '/path/to/some/entitlements.plist'
+            log.debug('CFBundleIdentifier1 {0}'.format(self.bundle.get_info_prop('CFBundleIdentifier')))
 
             # Stage 1: Fake signature
             fake_codesig_data = make_signature(macho, arch_offset, arch_size, arch['cmds'], self.f, entitlements_file,
@@ -109,7 +110,7 @@ class Signable(object):
             log.debug("fake codesig length: {}".format(fake_codesig_length))
 
             # stage 2: real signature
-            log.debug(self.bundle.get_info_prop('CFBundleIdentifier'))
+            log.debug('CFBundleIdentifier2 {0}'.format(self.bundle.get_info_prop('CFBundleIdentifier')))
             codesig_data = make_signature(macho, arch_offset, arch_size, arch['cmds'], self.f, entitlements_file,
                                           fake_codesig_length, self.signer,
                                           self.bundle.get_info_prop('CFBundleIdentifier'))

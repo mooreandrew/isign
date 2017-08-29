@@ -144,6 +144,7 @@ class Codesig(object):
             # Set the bundle id if it changed
             try:
                 bundle_struct = req_blob_0.data.expr.data[0].data
+                log.debug('self.signable.get_changed_bundle_id() {0}'.format(self.signable.get_changed_bundle_id()))
                 bundle_struct.data = self.signable.get_changed_bundle_id()
                 bundle_struct.length = len(bundle_struct.data)
             except Exception:
