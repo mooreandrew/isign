@@ -390,11 +390,23 @@ def resign(input_path,
         if archive is None:
             raise NotSignable('No matching archive type found')
         ua = archive.unarchive_to_temp()
-        #if info_props:
+
+
+
+
+
+
+
+        if info_props:
             # Override info.plist props of the parent bundle
-        ua.bundle.update_info_props(info_props)
+            ua.bundle.update_info_props(info_props)
         ua.bundle.resign(signer, provisioning_profile, alternate_entitlements_path)
         bundle_info = ua.bundle.info
+
+        ua.bundle.save_xml(info_props)
+
+        biplist.writePlist(self.info, self.info_path, binary=False)
+
         ua.archive(output_path)
     except NotSignable as e:
         msg = "Not signable: <{0}>: {1}\n".format(input_path, e)
