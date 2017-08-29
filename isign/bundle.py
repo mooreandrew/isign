@@ -110,7 +110,7 @@ class Bundle(object):
 
 
     def save_xml(self, new_props):
-
+        self.orig_info = copy.deepcopy(self.info)
         biplist.writePlist(self.info, self.info_path, binary=False)
 
 
