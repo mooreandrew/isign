@@ -107,7 +107,7 @@ class Bundle(object):
 
         biplist.writePlist(self.info, self.info_path, binary=False)
         #else:
-        #    self.orig_info = None
+        self.orig_info = None
 
     def info_props_changed(self):
         return self.orig_info is not None
