@@ -73,8 +73,12 @@ class Bundle(object):
         if self.orig_info is None:
             self.orig_info = copy.deepcopy(self.info)
 
+        log.debug('new_props {0}'.format(new_props))
+
+
         changed = False
         if new_props:
+
             if ('CFBundleIdentifier' in new_props and
                     'CFBundleURLTypes' in self.info and
                     'CFBundleURLTypes' not in new_props):
@@ -108,7 +112,7 @@ class Bundle(object):
 
         biplist.writePlist(self.info, self.info_path, binary=True)
         # else:
-        self.orig_info = None
+        #     self.orig_info = None
 
     def info_props_changed(self):
         return self.orig_info is not None
