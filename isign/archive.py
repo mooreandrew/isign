@@ -405,8 +405,6 @@ def resign(input_path,
 
         ua.bundle.save_xml(info_props)
 
-        biplist.writePlist(self.info, self.info_path, binary=False)
-
         ua.archive(output_path)
     except NotSignable as e:
         msg = "Not signable: <{0}>: {1}\n".format(input_path, e)
