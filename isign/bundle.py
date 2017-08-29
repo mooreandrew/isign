@@ -99,7 +99,7 @@ class Bundle(object):
                     changed = True
 
         #if changed:
-            log.debug('(2) writing {0}'.format(self.info_path))
+        log.debug('(2) writing {0}'.format(self.info_path))
 
         biplist.writePlist(self.info, self.info_path, binary=False)
         #else:

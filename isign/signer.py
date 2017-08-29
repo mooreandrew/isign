@@ -36,7 +36,7 @@ def openssl_command(args, data=None, expect_err=False):
     cmd_str = ' '.join(cmd)
 
     log.debug("Command `{0}`".format(cmd_str))
-    log.debug(data)
+    #log.debug(data)
 
     log.debug('running command ' + cmd_str)
     proc = subprocess.Popen(cmd,
