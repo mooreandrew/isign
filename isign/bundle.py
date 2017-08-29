@@ -74,36 +74,36 @@ class Bundle(object):
             self.orig_info = copy.deepcopy(self.info)
 
         changed = False
+        if new_props:
+            if ('CFBundleIdentifier' in new_props and
+                    'CFBundleURLTypes' in self.info and
+                    'CFBundleURLTypes' not in new_props):
+                # The bundle identifier changed. Check CFBundleURLTypes for
+                # CFBundleURLName values matching the old bundle
+                # id if it's not being set explicitly
+                old_bundle_id = self.info['CFBundleIdentifier']
+                new_bundle_id = new_props['CFBundleIdentifier']
+                for url_type in self.info['CFBundleURLTypes']:
+                    if 'CFBundleURLName' not in url_type:
+                        continue
+                    if url_type['CFBundleURLName'] == old_bundle_id:
+                        url_type['CFBundleURLName'] = new_bundle_id
+                        changed = True
 
-        if ('CFBundleIdentifier' in new_props and
-                'CFBundleURLTypes' in self.info and
-                'CFBundleURLTypes' not in new_props):
-            # The bundle identifier changed. Check CFBundleURLTypes for
-            # CFBundleURLName values matching the old bundle
-            # id if it's not being set explicitly
-            old_bundle_id = self.info['CFBundleIdentifier']
-            new_bundle_id = new_props['CFBundleIdentifier']
-            for url_type in self.info['CFBundleURLTypes']:
-                if 'CFBundleURLName' not in url_type:
-                    continue
-                if url_type['CFBundleURLName'] == old_bundle_id:
-                    url_type['CFBundleURLName'] = new_bundle_id
+            for key, val in new_props.iteritems():
+                is_new_key = key not in self.info
+                if is_new_key or self.info[key] != val:
+                    if is_new_key:
+                        log.warn("Adding new Info.plist key: {}".format(key))
+                    self.info[key] = val
                     changed = True
 
-        for key, val in new_props.iteritems():
-            is_new_key = key not in self.info
-            if is_new_key or self.info[key] != val:
-                if is_new_key:
-                    log.warn("Adding new Info.plist key: {}".format(key))
-                self.info[key] = val
-                changed = True
+        # if changed:
+        log.debug('(2) writing {0}'.format(self.info_path))
 
-        if changed:
-            log.debug('(2) writing {0}'.format(self.info_path))
-
-            biplist.writePlist(self.info, self.info_path, binary=True)
-        else:
-            self.orig_info = None
+        biplist.writePlist(self.info, self.info_path, binary=True)
+        # else:
+        #     self.orig_info = None
 
     def info_props_changed(self):
         return self.orig_info is not None
