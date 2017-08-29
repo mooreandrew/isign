@@ -140,6 +140,8 @@ class Codesig(object):
         req_blob_0 = requirements.data.BlobIndex[0].blob
         req_blob_0_original_length = req_blob_0.length
 
+        print('self.signable.get_changed_bundle_id() {0}'.format(self.signable.get_changed_bundle_id()))
+
         if self.signable.get_changed_bundle_id():
             # Set the bundle id if it changed
             try:
