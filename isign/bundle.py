@@ -101,7 +101,7 @@ class Bundle(object):
         # if changed:
         log.debug('(2) writing {0}'.format(self.info_path))
 
-        biplist.writePlist(self.info, self.info_path, binary=False)
+        biplist.writePlist(self.info, self.info_path, binary=True)
         # else:
         #     self.orig_info = None
 
