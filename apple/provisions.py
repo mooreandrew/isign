@@ -123,7 +123,7 @@ class IpaApp(App):
         os.chdir(self.path)
         relative_payload_path = os.path.relpath(self._get_payload_dir(),
                                                 self.path)
-        call([ZIP_BIN, "-qr0", temp, relative_payload_path])
+        call([ZIP_BIN, "-r1", temp, relative_payload_path])
         os.rename(temp, output_path)
         os.chdir(old_cwd)
         return output_path
