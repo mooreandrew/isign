@@ -275,7 +275,7 @@ class AppZipArchive(Archive):
             # need to chdir and use relative paths, because zip is stupid
             temp_zip_dir = tempfile.mkdtemp(prefix="isign-zip-")
             temp_zip_file = join(temp_zip_dir, 'temp.zip')
-            call([get_helper('zip'), "-qr", temp_zip_file, "."], cwd=containing_dir)
+            call([get_helper('zip'), "-qr0", temp_zip_file, "."], cwd=containing_dir)
             shutil.move(temp_zip_file, output_path)
             log.info("archived %s to %s" % (cls.__name__, output_path))
         finally:
